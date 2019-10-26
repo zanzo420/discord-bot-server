@@ -3,12 +3,17 @@ require('dotenv').config()
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fs = require('fs')
-const http = require('http')
+const https = require('http')
 const url = require('url')
 
 var commandQueue = []
 
-http.createServer(function (req, res) {
+/*const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+}*/
+
+https.createServer(/*options,*/ function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'})
   console.log('Url used: ' + req.url)
   if (req.url === '/pop') {
@@ -39,3 +44,5 @@ fs.readdir('./events/', (err, files) => {
 })
 
 client.login(process.env.BOT_TOKEN)
+
+exports.commandQueue = commandQueue
