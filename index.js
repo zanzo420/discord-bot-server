@@ -8,12 +8,18 @@ const url = require('url')
 
 var commandQueue = []
 
-/*const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-}*/
+var pets = ['https://media.giphy.com/media/WYEWpk4lRPDq0/giphy.gif',
+'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
+'http://giphygifs.s3.amazonaws.com/media/33OrjzUFwkwEg/giphy.gif',
+'https://media.giphy.com/media/8vQSQ3cNXuDGo/giphy.gif',
+'https://media.giphy.com/media/13WXyMa9yz2bUA/giphy.gif',
+'https://media.giphy.com/media/13ByqbM0hgfN7y/giphy-downsized-large.gif',
+'http://giphygifs.s3.amazonaws.com/media/6TPIcnnwkq6SA/giphy.gif',
+'https://media.giphy.com/media/qanpmMeeaa0Ni/giphy-downsized-large.gif',
+'http://giphygifs.s3.amazonaws.com/media/7jsnB2RRzDGIo/giphy.gif',
+'https://media.giphy.com/media/xfs2eBhQ6ujgA/giphy.gif']
 
-http.createServer(/*options,*/ function (req, res) {
+http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'})
   console.log('Url used: ' + req.url)
   if (req.url === '/pop') {
@@ -29,6 +35,8 @@ http.createServer(/*options,*/ function (req, res) {
   } else if (req.url === '/ping') {
     client.channels.get('637648713421946882').send('Pong!')
     res.write('Done')
+  } else if (req.url == '/pet') {
+    client.channels.get('637648713421946882').send('The best pet is ', {files: [pets[Math.floor(Math.random()*pets.length)]]})
   } else {
     res.write('Hello World!')
   }
