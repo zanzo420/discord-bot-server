@@ -19,7 +19,7 @@ http.createServer(function (req, res) {
     }
   } else if (req.url.startsWith('/send')) {
     var u = url.parse(req.url, true).query
-    client.channels.get('637648713421946882').send(u.message)
+    client.channels.get('637648713421946882').send(u.message).catch(console.log("Invalid message request"))
     res.write('Done')
   } else if (req.url === '/ping') {
     client.channels.get('637648713421946882').send('Pong!')
