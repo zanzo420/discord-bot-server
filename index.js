@@ -35,6 +35,13 @@ http.createServer(function (req, res) {
   } else if (req.url === '/startvote') {
     client.channels.get('637648713421946882').send('Which is better cats or dogs, vote now with !vote cats or !vote dogs')
     votes.reset_votes();
+  } else if (req.url === '/members') {
+    res.write('members ')
+    client.channels.get('637648713421946882').members.forEach(function(value) {
+     //console.log(value.user.username)
+     res.write(value.user.username + '\n')
+    })
+    //console.log(client.channels.get('637648713421946882').members)
   } else {
     res.write('Hello World!')
   }
