@@ -4,16 +4,16 @@ const client = new Discord.Client()
 var votes = [-1, -1]
 var voted = []
 
-function novotes() {
+function novotes(channel) {
   return votes[0] === -1 || votes[1] === -1
 }
 
-function reset_votes() {
+function reset_votes(channel) {
   voted = []
   votes = [0, 0]
 }
 
-function incCats(message) {
+function incCats(channel, message) {
   if (voted.includes(message.author.id)) {
     message.reply('You can\'t vote again')
   } else {
@@ -22,7 +22,7 @@ function incCats(message) {
   }
 }
 
-function incDogs(message) {
+function incDogs(channel, message) {
   if (voted.includes(message.author.id)) {
     message.reply('You can\'t vote again')
   } else {
@@ -31,7 +31,7 @@ function incDogs(message) {
   }
 }
 
-function displayTally() {
+function displayTally(channel) {
   if (votes[0] > votes[1]) {
     client.channels.get('637648713421946882').send('Cats are better ' + votes[0] + ' to ' + votes[1])
   } else if (votes[0] < votes[1]) {
