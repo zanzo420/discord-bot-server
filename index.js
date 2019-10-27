@@ -9,6 +9,7 @@ const url = require('url')
 var commandQueue = []
 var votes = [-1, -1]
 var voted = []
+var voted_for = []
 var pets = ['https://media.giphy.com/media/WYEWpk4lRPDq0/giphy.gif',
 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
 'http://giphygifs.s3.amazonaws.com/media/33OrjzUFwkwEg/giphy.gif',
@@ -53,31 +54,19 @@ function novotes() {
 }
 
 function incCats(message) {
-  if (voted.includes([message.author.id, 0])) {
+  if (voted.includes(message.author.id)) {
     message.reply('You can\'t vote again')
   } else {
-    if (voted.includes([message.author.id, 1])) {
-      message.reply('Changing your vote')
-      voted[1] -= 1
-      var i = voted.indexOf([message.author.id, 1])
-      voted.splice(i, 1)
-    }
-    voted.push([message.author.id, 0])
+    voted.push(message.author.id)
     votes[0] += 1
   }
 }
 
 function incDogs(message) {
-  if (voted.includes([message.author.id, 1])) {
+  if (voted.includes(message.author.id)) {
     message.reply('You can\'t vote again')
   } else {
-    if (voted.includes([message.author.id, 0])) {
-      message.reply('Changing your vote')
-      voted[0] -= 1
-      var i = voted.indexOf([message.author.id, 0])
-      voted.splice(i, 1)
-    }
-    voted.push([message.author.id, 1])
+    voted.push(message.author.id)
     votes[1] += 1
   }
 }
