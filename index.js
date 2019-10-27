@@ -9,7 +9,6 @@ const url = require('url')
 var commandQueue = []
 var votes = [-1, -1]
 var voted = []
-var voted_for = []
 var pets = ['https://media.giphy.com/media/WYEWpk4lRPDq0/giphy.gif',
 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
 'http://giphygifs.s3.amazonaws.com/media/33OrjzUFwkwEg/giphy.gif',
