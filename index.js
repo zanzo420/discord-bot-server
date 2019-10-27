@@ -53,19 +53,31 @@ function novotes() {
 }
 
 function incCats(message) {
-  if (voted.includes(message.author.id)) {
-    message.reply("You can't vote again")
+  if (voted.includes([message.author.id, 0])) {
+    message.reply('You can\'t vote again')
   } else {
-    voted.push(message.author.id)
+    if (voted.includes([message.author.id, 1])) {
+      message.reply('Changing your vote')
+      voted[1] -= 1
+      var i = voted.indexOf([message.author.id, 1])
+      voted.splice(i, 1)
+    }
+    voted.push([message.author.id, 0])
     votes[0] += 1
   }
 }
 
 function incDogs(message) {
-  if (voted.includes(message.author.id)) {
-    message.reply("You can't vote again")
+  if (voted.includes([message.author.id, 1])) {
+    message.reply('You can\'t vote again')
   } else {
-    voted.push(message.author.id)
+    if (voted.includes([message.author.id, 0])) {
+      message.reply('Changing your vote')
+      voted[0] -= 1
+      var i = voted.indexOf([message.author.id, 0])
+      voted.splice(i, 1)
+    }
+    voted.push([message.author.id, 1])
     votes[1] += 1
   }
 }
