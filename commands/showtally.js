@@ -1,5 +1,5 @@
-const index = require('../index.js')
+const votes = require('../web_requests/vote.js')
 
 module.exports = message => {
-  index.displayTally()
+  votes.displayTally()
 }

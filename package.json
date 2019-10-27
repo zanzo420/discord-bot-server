@@ -1,7 +1,7 @@
 {
   "name": "hack-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Connects an Amazon Alexa to Discord",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
